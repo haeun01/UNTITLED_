@@ -10,10 +10,11 @@ const FlexC = styled.div`
   flex-direction: column;
   font-weight: 100;
   font-size: 300px;
-  const Title {
+
+  /* const Title {
     font-weight: 500;
     font-size: 300px;
-  }
+  } */
 `;
 const Flex = styled.div`
   display: flex;
@@ -58,14 +59,13 @@ export function MyPageEdit() {
   let birthday;
 
   async function EditBtnClick() {
-    if (password) {
+    if (name) {
       try {
         const response = await axios.post(
-          "http://localhost:8080/api/changePassword",
-          { userId: sessionUser, password: password }
+          "http://localhost:8080/api/changeUserName",
+          { userName: name } // userId 대신 userName을 사용
         );
-        const data = response.data;
-        console.log(password);
+        console.log(name);
       } catch (error) {
         console.log("요청에 실패했습니다.", error);
       }

@@ -9,6 +9,9 @@ const Container = styled.div`
 
 const Profile = styled.div`
   display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 `;
 const ImgBox = styled.div`
   width: 200px;
@@ -16,14 +19,16 @@ const ImgBox = styled.div`
   border: 1px solid white;
   display: flex;
   justify-content: center;
-  margin-right: 10px;
+  align-items: center;
+  margin: 30px 0px;
 `;
 const Textarea = styled.textarea`
   width: 100%;
   padding: 5px;
-  background-color: black;
-  color: white;
+  background-color: white;
+  color: black;
   border: 1px solid white;
+  margin: 30px 0px;
 `;
 const Button = styled.div`
   width: 200px;
@@ -123,24 +128,15 @@ export function FeedCreate() {
       <Container>
         <div
           style={{
-            fontSize: "50px",
+            fontSize: "80px",
             fontWeight: "100",
             textAlign: "center",
-            margin: "20px 0",
+            margin: "40px 0",
           }}
         >
           Feed Create
         </div>
-        <input
-          type="file"
-          id="fileInput"
-          accept="image/*"
-          onChange={(e) => {
-            convertImageToBytes(e);
-          }}
-          required
-        />
-        <br />
+
         <Profile>
           <ImgBox>
             {imageSrc && (
@@ -151,6 +147,15 @@ export function FeedCreate() {
               />
             )}
           </ImgBox>
+          <input
+            type="file"
+            id="fileInput"
+            accept="image/*"
+            onChange={(e) => {
+              convertImageToBytes(e);
+            }}
+            required
+          />
           <Textarea
             id="text"
             name="text"

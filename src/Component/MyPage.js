@@ -5,13 +5,15 @@ import { Link, Outlet, useLocation } from "react-router-dom";
 import { Loading } from "./Styles";
 
 const MypageLeft = styled.div`
-  margin: 30px 70px;
+  margin: 0px 70px;
   max-width: 28%;
   border: 1px solid white;
   display: inline-block;
   flex-wrap: wrap-reverse;
   justify-content: flex-start;
   align-items: flex-start;
+  padding: 60px;
+  position: relative;
 `;
 
 const MypageRight = styled.div`
@@ -21,6 +23,9 @@ const MypageRight = styled.div`
   margin-right: 50px;
   background-color: black;
   overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
   /* 네 변에 애니메이션 효과 추가 */
   &::before,
@@ -121,14 +126,14 @@ const StyledLink = styled(Link)`
   text-decoration: none;
   color: white;
   font-size: 30px;
-  font-weight: ${(props) => (props.$bold ? "bold" : "lighter")};
+  font-weight: ${(props) => (props.$bold ? "100" : "lighter")};
 `;
 
 const StyledLinkDetail = styled(Link)`
   text-decoration: none;
   color: white;
   font-size: 20px;
-  margin-left: 20px;
+  margin: 20px;
   font-weight: ${(props) => (props.$bold ? "bold" : "lighter")};
 `;
 
@@ -169,7 +174,7 @@ export function MyPage() {
           <Flex>
             <MypageLeft>
               <Flex style={{ alignItems: "center" }}>
-                <Text $bold="true" size="100px">
+                <Text $bold="true" size="70px">
                   {sessionUser ? sessionUser : ""}
                 </Text>
                 <Text>님의</Text>
@@ -195,32 +200,32 @@ export function MyPage() {
                     to="/mypage/scrap"
                     $bold={location.pathname === "/mypage/scrap"}
                   >
-                    - 스크랩한 피드
+                    · 스크랩한 피드
                   </StyledLinkDetail>
                   <br />
                   <StyledLinkDetail
                     to="/mypage/like"
                     $bold={location.pathname === "/mypage/like"}
                   >
-                    - 좋아요한 피드
+                    · 좋아요한 피드
                   </StyledLinkDetail>
                   <br />
                   <StyledLinkDetail
                     to="/mypage/create"
                     $bold={location.pathname === "/mypage/create"}
                   >
-                    - 피드 작성
+                    · 피드 작성
                   </StyledLinkDetail>
                   <br />
                   <StyledLinkDetail
                     to="/mypage/profile"
                     $bold={location.pathname === "/mypage/profile"}
                   >
-                    - 프로필 수정
+                    · 프로필 수정
                   </StyledLinkDetail>
                   <br />
                   <StyledLinkDetail to={`/feed/user/${sessionUser}`}>
-                    - 개인 피드
+                    · 개인 피드
                   </StyledLinkDetail>
                   <br />
                 </>
