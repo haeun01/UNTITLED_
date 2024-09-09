@@ -1,0 +1,4 @@
+"id","created_at","image","status","text","user_id","user2_id"
+1,2024-06-18 09:27:51.213,"",1,안녕하세요.,ham,rose
+2,2024-06-18 09:30:22.008,https://picsum.photos/200/200,1,반가워요,ham,rose
+3,2024-06-18 09:31:28.334,"",0,안녕하세요. 반갑습니다.,rose,ham

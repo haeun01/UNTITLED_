@@ -6,10 +6,16 @@ import { Loading } from "./Styles";
 
 const MypageLeft = styled.div`
   margin: 30px 70px;
+  max-width: 30%;
+  border: 1px solid white;
+  display: inline-block;
+  flex-wrap: wrap-reverse;
+  justify-content: flex-start;
+  align-items: flex-start;
 `;
 
 const MypageRight = styled.div`
-   position: relative;
+  position: relative;
   width: 72%;
   height: 800px;
   margin-right: 50px;
@@ -21,7 +27,7 @@ const MypageRight = styled.div`
   &::after,
   & span:nth-of-type(1),
   & span:nth-of-type(2) {
-    content: '';
+    content: "";
     position: absolute;
     background: #fff;
     pointer-events: none;
@@ -74,7 +80,8 @@ const MypageRight = styled.div`
     0% {
       left: -100%;
     }
-    50%, 100% {
+    50%,
+    100% {
       left: 100%;
     }
   }
@@ -83,7 +90,8 @@ const MypageRight = styled.div`
     0% {
       top: -100%;
     }
-    50%, 100% {
+    50%,
+    100% {
       top: 100%;
     }
   }
@@ -92,7 +100,8 @@ const MypageRight = styled.div`
     0% {
       right: -100%;
     }
-    50%, 100% {
+    50%,
+    100% {
       right: 100%;
     }
   }
@@ -101,7 +110,8 @@ const MypageRight = styled.div`
     0% {
       bottom: -100%;
     }
-    50%, 100% {
+    50%,
+    100% {
       bottom: 100%;
     }
   }
@@ -146,61 +156,88 @@ export function MyPage() {
   };
 
   useEffect(() => {
-    if(sessionUser=="anonymousUser"){
+    if (sessionUser == "anonymousUser") {
       alert("로그인이 필요한 서비스입니다.");
-      window.location.href = '/login';
+      window.location.href = "/login";
     }
   }, [sessionUser]);
 
   return (
     <>
-      {sessionUser? sessionUser!="anonymousUser"? <Flex>
-        <MypageLeft>
-          <Flex style={{ alignItems: "center" }}>
-            <Text $bold="true" size="100px">
-              {sessionUser ? sessionUser : ""}
-            </Text>
-            <Text>님의</Text>
+      {sessionUser ? (
+        sessionUser != "anonymousUser" ? (
+          <Flex>
+            <MypageLeft>
+              <Flex style={{ alignItems: "center" }}>
+                <Text $bold="true" size="100px">
+                  {sessionUser ? sessionUser : ""}
+                </Text>
+                <Text>님의</Text>
+              </Flex>
+              <Text style={{ marginBottom: "40px" }}>마이페이지</Text>
+              <StyledLink
+                to="/mypage/edit"
+                $bold={location.pathname === "/mypage/edit"}
+              >
+                회원 정보 수정
+              </StyledLink>
+              <br />
+              <Text
+                size="30px"
+                onClick={toggleFeedDetails}
+                style={{ cursor: "pointer" }}
+              >
+                피드 정보
+              </Text>
+              {showFeedDetails && (
+                <>
+                  <StyledLinkDetail
+                    to="/mypage/scrap"
+                    $bold={location.pathname === "/mypage/scrap"}
+                  >
+                    - 스크랩한 피드
+                  </StyledLinkDetail>
+                  <br />
+                  <StyledLinkDetail
+                    to="/mypage/like"
+                    $bold={location.pathname === "/mypage/like"}
+                  >
+                    - 좋아요한 피드
+                  </StyledLinkDetail>
+                  <br />
+                  <StyledLinkDetail
+                    to="/mypage/create"
+                    $bold={location.pathname === "/mypage/create"}
+                  >
+                    - 피드 작성
+                  </StyledLinkDetail>
+                  <br />
+                  <StyledLinkDetail
+                    to="/mypage/profile"
+                    $bold={location.pathname === "/mypage/profile"}
+                  >
+                    - 프로필 수정
+                  </StyledLinkDetail>
+                  <br />
+                  <StyledLinkDetail to={`/feed/user/${sessionUser}`}>
+                    - 개인 피드
+                  </StyledLinkDetail>
+                  <br />
+                </>
+              )}
+            </MypageLeft>
+            <MypageRight>
+              <span></span>
+              <span></span>
+              <Outlet />
+            </MypageRight>
           </Flex>
-          <Text style={{ marginBottom: "40px" }}>마이페이지</Text>
-          <StyledLink to="/mypage/edit" $bold={location.pathname === "/mypage/edit"}>
-            회원 정보 수정
-          </StyledLink>
-          <br />
-          <Text size="30px" onClick={toggleFeedDetails} style={{ cursor: "pointer" }}>
-            피드 정보
-          </Text>
-          {showFeedDetails && (
-            <>
-              <StyledLinkDetail to="/mypage/scrap" $bold={location.pathname === "/mypage/scrap"}>
-                - 스크랩한 피드
-              </StyledLinkDetail>
-              <br />
-              <StyledLinkDetail to="/mypage/like" $bold={location.pathname === "/mypage/like"}>
-                - 좋아요한 피드
-              </StyledLinkDetail>
-              <br />
-              <StyledLinkDetail to="/mypage/create" $bold={location.pathname === "/mypage/create"}>
-                - 피드 작성
-              </StyledLinkDetail>
-              <br />
-              <StyledLinkDetail to="/mypage/profile" $bold={location.pathname === "/mypage/profile"}>
-                - 프로필 수정
-              </StyledLinkDetail>
-              <br />
-              <StyledLinkDetail to={`/feed/user/${sessionUser}`}>
-                - 개인 피드
-              </StyledLinkDetail>
-              <br />
-            </>
-          )}
-        </MypageLeft>
-        <MypageRight>
-        <span></span>
-        <span></span>
-          <Outlet />
-        </MypageRight>
-      </Flex>:<Loading/>:<Loading/>}
+        ) : (
+          <Loading />
+        )
+      ) : (
+        <Loading />
+      )}
     </>
   );
 }

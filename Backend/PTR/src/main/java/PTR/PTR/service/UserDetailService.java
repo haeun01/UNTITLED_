@@ -1,0 +1,28 @@
+package PTR.PTR.service;
+
+import PTR.PTR.model.User;
+import PTR.PTR.repository.UserRepository;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.stereotype.Service;
+
+import java.util.Optional;
+
+@Service
+public class UserDetailService implements UserDetailsService {
+    private final UserRepository userRepository;
+
+    public UserDetailService(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
+
+    @Override
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException { // 구조도의 7번에 해당
+        Optional<User> user = userRepository.findByUserId(username);
+        if (user.isEmpty()) {
+            throw new IllegalArgumentException(username);
+        }
+        return user.get();
+    }
+}
