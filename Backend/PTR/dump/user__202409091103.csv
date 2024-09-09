@@ -1,0 +1,2 @@
+"user_id","birthday","coin","created_at","data","email","password","profile_img","profile_text","user_name","user_authority"
+test,2000-01-01,0,2024-09-09 11:02:35.518,,untitled@email.com,$2a$10$sOcjv6kNe0TTX1.USGwd1enVeev65FmsK3blS3dRUfLtqzD6aMkFy,https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMzEwMDZfNTYg%2FMDAxNjk2NTkwNTMzMDAw.5EbiBwYZ9wWxrN831q0z4AC92SmxB6lE4i4nja-qzDkg.Nx6ER8bleU0SDZJc7s6SM5ITsJv9GP_WUa-RW_cwGuog.JPEG.tmvldkrk%2F105.jpg&type=sc960_832,"",UNTITLED,ROLE_USER
