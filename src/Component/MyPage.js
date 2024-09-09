@@ -6,7 +6,7 @@ import { Loading } from "./Styles";
 
 const MypageLeft = styled.div`
   margin: 30px 70px;
-  max-width: 30%;
+  max-width: 28%;
   border: 1px solid white;
   display: inline-block;
   flex-wrap: wrap-reverse;

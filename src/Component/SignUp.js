@@ -2,7 +2,6 @@ import axios from "axios";
 import React, { useState } from "react";
 import styled from "styled-components";
 
-
 // 컨테이너 스타일
 const Container = styled.div`
   display: flex;
@@ -46,15 +45,14 @@ const Input = styled.input`
 `;
 
 // 버튼 스타일
-const Button = styled.button`
-  width: 45%;
-  padding: 10px;
-  margin: 20px 0;
-  border: 1px solid white;
-  border-radius: 30px;
+const Button = styled.div`
+  padding: 10px 70px;
+  border-radius: 50px;
   background-color: white;
   color: black;
   font-size: 16px;
+  font-weight: 300;
+  margin: 10px 0px;
   cursor: pointer;
   transition: background-color 0.3s; /* 부드러운 전환 효과 추가 */
 
@@ -81,8 +79,14 @@ export function SignUp() {
   let email;
   let birthday;
 
-  async function signup(){
-    if(id==null || password==null || name==null || email==null || birthday==null){
+  async function signup() {
+    if (
+      id == null ||
+      password == null ||
+      name == null ||
+      email == null ||
+      birthday == null
+    ) {
       alert("빈칸이 있습니다.");
       return;
     }
@@ -91,24 +95,27 @@ export function SignUp() {
       password: password,
       userName: name,
       userEmail: email,
-      birthday: birthday
+      birthday: birthday,
     };
     const sessionUser = {
       userId: id,
-      password: password
-    }
-    try{
-      const response = await axios.post("http://localhost:8080/api/signup", user);
+      password: password,
+    };
+    try {
+      const response = await axios.post(
+        "http://localhost:8080/api/signup",
+        user
+      );
       const data = response.data;
       console.log(data);
       alert(data);
-      if(data == "이미 등록된 아이디입니다."){
-          return;
-      } else{
-          setUser(sessionUser);
+      if (data == "이미 등록된 아이디입니다.") {
+        return;
+      } else {
+        setUser(sessionUser);
       }
-      window.location.href = '/login';
-    }catch(error){
+      window.location.href = "/login";
+    } catch (error) {
       console.log("요청에 실패했습니다.", error);
     }
   }
@@ -118,13 +125,49 @@ export function SignUp() {
       <Container>
         <Title>Sign Up</Title>
         <FormContainer>
-          <Input type="text" placeholder="ID" onChange={(e)=> {id = e.target.value}}/>
-          <Input type="password" placeholder="PW" onChange={(e)=> {password = e.target.value}}/>
-          <Input type="text" placeholder="NAME" onChange={(e)=> {name = e.target.value}}/>
-          <Input type="email" placeholder="EMAIL" onChange={(e)=> {email = e.target.value}}/>
-          <Input type="date" placeholder="BIRTHDAY" onChange={(e)=> {birthday = e.target.value}}/>
+          <Input
+            type="text"
+            placeholder="ID"
+            onChange={(e) => {
+              id = e.target.value;
+            }}
+          />
+          <Input
+            type="password"
+            placeholder="PW"
+            onChange={(e) => {
+              password = e.target.value;
+            }}
+          />
+          <Input
+            type="text"
+            placeholder="NAME"
+            onChange={(e) => {
+              name = e.target.value;
+            }}
+          />
+          <Input
+            type="email"
+            placeholder="EMAIL"
+            onChange={(e) => {
+              email = e.target.value;
+            }}
+          />
+          <Input
+            type="date"
+            placeholder="BIRTHDAY"
+            onChange={(e) => {
+              birthday = e.target.value;
+            }}
+          />
           <ButtonContainer>
-            <Button onClick={()=>{signup()}}>Sign Up</Button>
+            <Button
+              onClick={() => {
+                signup();
+              }}
+            >
+              Sign Up
+            </Button>
           </ButtonContainer>
         </FormContainer>
       </Container>
